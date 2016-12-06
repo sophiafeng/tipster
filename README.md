@@ -1,4 +1,4 @@
-# Pre-work - Tiptop
+# Tiptop
 
 Tiptop is a tip calculator application for iOS.
 
