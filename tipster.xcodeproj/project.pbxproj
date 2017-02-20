@@ -13,7 +13,6 @@
 		EC6CF5561E47F1DF0064F31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6CF5551E47F1DF0064F31D /* Assets.xcassets */; };
 		EC6CF5591E47F1E90064F31D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CF5571E47F1E90064F31D /* SettingsViewController.swift */; };
 		EC6CF55A1E47F1E90064F31D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CF5581E47F1E90064F31D /* ViewController.swift */; };
-		EC6CF55C1E47F1F50064F31D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC6CF55B1E47F1F50064F31D /* Info.plist */; };
 		EC9200B51DCE8B22001620D7 /* tipsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9200B41DCE8B22001620D7 /* tipsterTests.swift */; };
 		EC9200C01DCE8B22001620D7 /* tipsterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9200BF1DCE8B22001620D7 /* tipsterUITests.swift */; };
 /* End PBXBuildFile section */
@@ -239,7 +238,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2546811E47F683002645EA /* LaunchScreen.storyboard in Resources */,
-				EC6CF55C1E47F1F50064F31D /* Info.plist in Resources */,
 				EC6CF5561E47F1DF0064F31D /* Assets.xcassets in Resources */,
 				EC2546821E47F683002645EA /* Main.storyboard in Resources */,
 			);
@@ -450,9 +448,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 45VBDAASVW;
-				INFOPLIST_FILE = tiptopTests/Info.plist;
+				INFOPLIST_FILE = tipsterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tiptop.tiptopTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tipster.tipsterTests;
 				PRODUCT_NAME = tipsterTests;
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tipster.app/tipster";
@@ -465,9 +463,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 45VBDAASVW;
-				INFOPLIST_FILE = tiptopTests/Info.plist;
+				INFOPLIST_FILE = tipsterTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tiptop.tiptopTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tipster.tipsterTests;
 				PRODUCT_NAME = tipsterTests;
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/tipster.app/tipster";
@@ -479,12 +477,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 45VBDAASVW;
-				INFOPLIST_FILE = tiptopUITests/Info.plist;
+				INFOPLIST_FILE = tipsterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tiptop.tiptopUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tipster.tipsterUITests;
 				PRODUCT_NAME = tipsterUITests;
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = tiptop;
+				TEST_TARGET_NAME = tipster;
 			};
 			name = Debug;
 		};
@@ -493,12 +491,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 45VBDAASVW;
-				INFOPLIST_FILE = tiptopUITests/Info.plist;
+				INFOPLIST_FILE = tipsterUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tiptop.tiptopUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.tipster.tipsterUITests;
 				PRODUCT_NAME = tipsterUITests;
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = tiptop;
+				TEST_TARGET_NAME = tipster;
 			};
 			name = Release;
 		};

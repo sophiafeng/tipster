@@ -1,6 +1,6 @@
 //
-//  tiptopUITests.swift
-//  tiptopUITests
+//  tipsterUITests.swift
+//  tipsterUITests
 //
 //  Created by Sophia Feng on 11/5/16.
 //
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class tiptopUITests: XCTestCase {
+class tipsterUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

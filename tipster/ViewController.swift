@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  tiptop
+//  tipster
 //
 //  Created by Sophia Feng on 11/5/16.
 //
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIViewControllerRestoration {
     
     struct tipSegment {
         static let low = 0
@@ -22,9 +22,26 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipControl: UISegmentedControl!
     var defaultTip : Int?
 
+    // MARK: - State Restoration
+    /*
+     Provide a new instance on demand, including decoding of its previous state,
+     which would else be done in `decodeRestorableStateWithCoder(_)`
+     */
+    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+        assert(String(describing: self) == (identifierComponents.last as! String), "unexpected restoration path: \(identifierComponents)")
+        
+        let vc = ViewController()
+        return vc
+    }
+    
+    // MARK: - UIViewController fns
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
+        
+        restorationIdentifier = "ViewControllerId"
+        restorationClass = ViewController.self
         
         self.tipLabel.text = "$0.00"
         self.totalLabel.text = "$0.00"
@@ -53,6 +70,30 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - UIViewControllerRestoration protocol methods
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let savedBillFieldData = billField.text {
+            coder.encode(savedBillFieldData, forKey: "billField")
+        }
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        // bill data
+        if let savedBillFieldData = coder.decodeObject(forKey: "billField") as? String {
+            billField.text = savedBillFieldData
+        }
+        
+        super.decodeRestorableState(with: coder)
+    }
+    
+    override func applicationFinishedRestoringState() {
+        print("finished restoring")
+    }
+    
+    // MARK: - Tip calculation fns
 
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)

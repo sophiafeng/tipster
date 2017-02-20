@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="Uw6-K5-eMq">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="Uw6-K5-eMq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Tip Calculator View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Tip Calculator View Controller" customClass="ViewController" customModule="tiptop" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerId" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" userLabel="Tip Calculator View Controller" customClass="ViewController" customModule="tipster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Tip Calculator" id="Xth-Oa-ttG">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="hyJ-Tn-uBo">
                             <connections>
-                                <segue destination="sE3-2z-PVk" kind="push" id="WSc-NP-ufK"/>
+                                <segue destination="sE3-2z-PVk" kind="push" id="6V0-hX-6jI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -107,12 +107,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="372.5" y="152.5"/>
+            <point key="canvasLocation" x="412" y="153"/>
         </scene>
         <!--Settings View Controller-->
         <scene sceneID="MGk-hc-0Ic">
             <objects>
-                <viewController title="Settings View Controller" id="sE3-2z-PVk" customClass="SettingsViewController" customModule="tiptop" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsViewControllerId" title="Settings View Controller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sE3-2z-PVk" customClass="SettingsViewController" customModule="tipster" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tIl-HL-az4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,7 +150,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="decreaseLowTipPercentage:" destination="sE3-2z-PVk" eventType="touchUpInside" id="KhN-YD-AYI"/>
+                                    <action selector="decreaseLowTipPercentage:" destination="sE3-2z-PVk" eventType="touchUpInside" id="6sr-Sl-rcl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3pw-YS-kCw">
@@ -218,7 +218,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="-"/>
                                 <connections>
-                                    <action selector="decreaseHiTipPercentage:" destination="sE3-2z-PVk" eventType="touchUpInside" id="0YE-rb-Mta"/>
+                                    <action selector="decreaseHiTipPercentage:" destination="sE3-2z-PVk" eventType="touchUpInside" id="7c9-V6-7St"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -230,7 +230,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="sYt-Cj-HI8"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="decreaseHiTipPercentageButton" destination="nsf-l7-zbH" id="2HU-Ch-52c"/>
+                        <outlet property="decreaseHiTipPercentageButton" destination="nsf-l7-zbH" id="9TL-dt-u9M"/>
                         <outlet property="decreaseLowTipPercentageButton" destination="9NN-zc-OHt" id="131-C7-32d"/>
                         <outlet property="decreaseMedTipPercentageButton" destination="sJx-Qa-ADj" id="6KQ-hN-BfW"/>
                         <outlet property="hiTipPercentageLabel" destination="lAg-Ib-6Sc" id="4vj-FS-RCH"/>
@@ -243,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4vz-J1-zkG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780.5" y="153.5"/>
+            <point key="canvasLocation" x="904.5" y="152.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yHU-ks-kIc">

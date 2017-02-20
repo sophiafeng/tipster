@@ -1,15 +1,15 @@
 //
-//  tiptopTests.swift
-//  tiptopTests
+//  tipsterTests.swift
+//  tipsterTests
 //
 //  Created by Sophia Feng on 11/5/16.
 //
 //
 
 import XCTest
-@testable import tiptop
+@testable import tipster
 
-class tiptopTests: XCTestCase {
+class tipsterTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

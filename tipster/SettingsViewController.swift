@@ -1,6 +1,6 @@
 //
 //  SettingsViewController.swift
-//  tiptop
+//  tipster
 //
 //  Created by Sophia Feng on 11/6/16.
 //
