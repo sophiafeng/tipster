@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIViewControllerRestoration {
+class ViewController: UIViewController {
     
     struct tipSegment {
         static let low = 0
@@ -21,28 +21,13 @@ class ViewController: UIViewController, UIViewControllerRestoration {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipControl: UISegmentedControl!
     var defaultTip : Int?
-
-    // MARK: - State Restoration
-    /*
-     Provide a new instance on demand, including decoding of its previous state,
-     which would else be done in `decodeRestorableStateWithCoder(_)`
-     */
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
-        assert(String(describing: self) == (identifierComponents.last as! String), "unexpected restoration path: \(identifierComponents)")
-        
-        let vc = ViewController()
-        return vc
-    }
-    
+ 
     // MARK: - UIViewController fns
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
-        
-        restorationIdentifier = "ViewControllerId"
-        restorationClass = ViewController.self
-        
+
         self.tipLabel.text = "$0.00"
         self.totalLabel.text = "$0.00"
         
@@ -71,26 +56,23 @@ class ViewController: UIViewController, UIViewControllerRestoration {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UIViewControllerRestoration protocol methods
-    
+    // MARK: - UIStateRestoring protocol methods
     override func encodeRestorableState(with coder: NSCoder) {
-        if let savedBillFieldData = billField.text {
-            coder.encode(savedBillFieldData, forKey: "billField")
+        if let billTextFieldData = billField.text {
+            coder.encode(billTextFieldData, forKey: "billTextField")
         }
+        coder.encode(String(tipControl.selectedSegmentIndex), forKey: "tipSegmentSelector")
         super.encodeRestorableState(with: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        // bill data
-        if let savedBillFieldData = coder.decodeObject(forKey: "billField") as? String {
-            billField.text = savedBillFieldData
+        if let billTextFieldData = coder.decodeObject(forKey: "billTextField") as? String {
+            billField.text = billTextFieldData
         }
-        
+        if let tipControlSelectedIndex = coder.decodeObject(forKey: "tipSegmentSelector") as? String {
+            tipControl.selectedSegmentIndex = Int(tipControlSelectedIndex)!
+        }
         super.decodeRestorableState(with: coder)
-    }
-    
-    override func applicationFinishedRestoringState() {
-        print("finished restoring")
     }
     
     // MARK: - Tip calculation fns

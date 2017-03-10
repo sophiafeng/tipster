@@ -68,6 +68,35 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UIStateRestoring protocol methods
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let lowTipPercentageLabelData = lowTipPercentageLabel.text {
+            coder.encode(lowTipPercentageLabelData, forKey: "lowTipPercentageLabel")
+        }
+        if let medTipPercentageLabelData = medTipPercentageLabel.text {
+            coder.encode(medTipPercentageLabelData, forKey: "medTipPercentageLabel")
+        }
+        if let hiTipPercentageLabelData = lowTipPercentageLabel.text {
+            coder.encode(hiTipPercentageLabelData, forKey: "hiTipPercentageLabel")
+        }
+        super.encodeRestorableState(with: coder)
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let lowTipPercentageLabelData = coder.decodeObject(forKey: "lowTipPercentageLabel") as? String {
+            lowTipPercentageLabel.text = lowTipPercentageLabelData
+        }
+        if let medTipPercentageLabelData = coder.decodeObject(forKey: "medTipPercentageLabel") as? String {
+            medTipPercentageLabel.text = medTipPercentageLabelData
+        }
+        if let hiTipPercentageLabelData = coder.decodeObject(forKey: "hiTipPercentageLabel") as? String {
+            hiTipPercentageLabel.text = hiTipPercentageLabelData
+        }
+        super.decodeRestorableState(with: coder)
+    }
+    
+    // MARK: - Tip labels adjustments
+    
     func percentLabelToInt(label: UILabel) -> Int {
         var percentLabelText = label.text!
         percentLabelText.remove(at: percentLabelText.index(before: percentLabelText.endIndex))
@@ -120,6 +149,8 @@ class SettingsViewController: UIViewController {
             tipPercentageLabel.text = String(format: "%d%%", Int(tipPercentage)! < 100 ? Int(tipPercentage)! + 1 : 100)
         }
     }
+    
+    // MARK: - IBAction methods
     
     @IBAction func decreaseLowTipPercentage(_ sender: AnyObject) {
         updateTipLabel(tipPercentageAdjustment: tipPercentageAdjustment.decreaseLowTipPercentage)

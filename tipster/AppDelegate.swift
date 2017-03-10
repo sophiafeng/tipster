@@ -48,6 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
     }
+    
+    func application(_ application: UIApplication, didDecodeRestorableStateWith coder: NSCoder) {
+        print("did decode")
+    }
+    
+    func application(_ application: UIApplication, willEncodeRestorableStateWith coder: NSCoder) {
+        print("will encode")
+    }
 
 
 }
