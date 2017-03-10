@@ -1,6 +1,6 @@
-# Tiptop
+# Tipster
 
-Tiptop is a tip calculator application for iOS.
+Tipster is a tip calculator application for iOS.
 
 Submitted by: Sophia Feng
 
