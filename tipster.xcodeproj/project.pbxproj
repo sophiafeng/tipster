@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EC2546811E47F683002645EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC25467D1E47F683002645EA /* LaunchScreen.storyboard */; };
 		EC2546821E47F683002645EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC25467F1E47F683002645EA /* Main.storyboard */; };
+		EC56D84F1E736FB800203E8B /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56D84E1E736FB800203E8B /* SegmentedControl.swift */; };
 		EC6CF5541E47F1C80064F31D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CF5531E47F1C80064F31D /* AppDelegate.swift */; };
 		EC6CF5561E47F1DF0064F31D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC6CF5551E47F1DF0064F31D /* Assets.xcassets */; };
 		EC6CF5591E47F1E90064F31D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6CF5571E47F1E90064F31D /* SettingsViewController.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		EC25467E1E47F683002645EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC2546801E47F683002645EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EC56D84E1E736FB800203E8B /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		EC6CF5531E47F1C80064F31D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = /Users/sophia/Developers/tipster/tipster/AppDelegate.swift; sourceTree = "<absolute>"; };
 		EC6CF5551E47F1DF0064F31D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = tipster/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		EC6CF5571E47F1E90064F31D /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = tipster/SettingsViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -96,6 +98,7 @@
 				EC25467F1E47F683002645EA /* Main.storyboard */,
 				EC6CF5551E47F1DF0064F31D /* Assets.xcassets */,
 				EC6CF55B1E47F1F50064F31D /* Info.plist */,
+				EC56D84E1E736FB800203E8B /* SegmentedControl.swift */,
 			);
 			path = tipster;
 			sourceTree = SOURCE_ROOT;
@@ -266,6 +269,7 @@
 			files = (
 				EC6CF55A1E47F1E90064F31D /* ViewController.swift in Sources */,
 				EC6CF5541E47F1C80064F31D /* AppDelegate.swift in Sources */,
+				EC56D84F1E736FB800203E8B /* SegmentedControl.swift in Sources */,
 				EC6CF5591E47F1E90064F31D /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

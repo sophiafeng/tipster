@@ -112,34 +112,40 @@ class SettingsViewController: UIViewController {
             case .decreaseLowTipPercentage:
                 tipPercentageLabel = lowTipPercentageLabel;
                 adjustTipPercentageButton = decreaseLowTipPercentageButton;
+                increaseLowTipPercentageButton.isEnabled = true
                 decrease = true;
             case .decreaseMedTipPercentage:
                 tipPercentageLabel = medTipPercentageLabel;
                 adjustTipPercentageButton = decreaseMedTipPercentageButton;
+                increaseMedTipPercentageButton.isEnabled = true
                 decrease = true;
             case .decreaseHiTipPercentage:
                 tipPercentageLabel = hiTipPercentageLabel;
                 adjustTipPercentageButton = decreaseHiTipPercentageButton;
+                increaseHiTipPercentageButton.isEnabled = true
                 decrease = true;
             case .increaseLowTipPercentage:
                 tipPercentageLabel = lowTipPercentageLabel;
                 adjustTipPercentageButton = increaseLowTipPercentageButton;
+                decreaseLowTipPercentageButton.isEnabled = true
                 decrease = false;
             case .increaseMedTipPercentage:
                 tipPercentageLabel = medTipPercentageLabel;
                 adjustTipPercentageButton = increaseMedTipPercentageButton;
+                decreaseMedTipPercentageButton.isEnabled = true
                 decrease = false;
             case .increaseHiTipPercentage:
                 tipPercentageLabel = hiTipPercentageLabel;
                 adjustTipPercentageButton = increaseHiTipPercentageButton;
+                decreaseHiTipPercentageButton.isEnabled = true
                 decrease = false;
         }
         
         var tipPercentage = tipPercentageLabel.text!
         tipPercentage.remove(at: tipPercentage.index(before: tipPercentage.endIndex))
         
-        // Void the button when tip will below 0 or above 100
-        if (Int(tipPercentage)! <= 1 || Int(tipPercentage)! >= 100) {
+        // Void the button when decreasing tip below 0 or increasing tip above 100
+        if ((decrease && Int(tipPercentage)! <= 0) || (!decrease && Int(tipPercentage)! >= 100)) {
             adjustTipPercentageButton.isEnabled = false
         }
         

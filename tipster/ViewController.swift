@@ -17,9 +17,18 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var tipLabel: UILabel!
+    @IBOutlet weak var tipSymbol: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalTwoLabel: UILabel!
+    @IBOutlet weak var totalThreeLabel: UILabel!
+    @IBOutlet weak var totalFourLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
-    @IBOutlet weak var tipControl: UISegmentedControl!
+    @IBOutlet weak var tipPercentControl: SegmentedControl!
+    @IBOutlet weak var splitOne: UILabel!
+    @IBOutlet weak var splitTwo: UILabel!
+    @IBOutlet weak var splitThree: UILabel!
+    @IBOutlet weak var splitFour: UILabel!
+    
     var defaultTip : Int?
  
     // MARK: - UIViewController fns
@@ -27,14 +36,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewdidload")
-
+        
         self.tipLabel.text = "$0.00"
         self.totalLabel.text = "$0.00"
+        self.totalTwoLabel.text = "$0.00"
+        self.totalThreeLabel.text = "$0.00"
+        self.totalFourLabel.text = "$0.00"
         
-        tipControl.layer.cornerRadius = 5.0
-        tipControl.layer.masksToBounds = true
-        tipControl.tintColor = UIColor(red: 92.0/255, green: 69.0/255, blue: 133.0/255, alpha: 0.8)
-        tipControl.selectedSegmentIndex = 0
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+        
+        tipPercentControl.layer.masksToBounds = true
+        tipPercentControl.selectedIndex = 0
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(15, forKey: "lowTip")
@@ -44,10 +59,24 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tipControl.setTitle(":(", forSegmentAt: tipSegment.low)
-        tipControl.setTitle(":|", forSegmentAt: tipSegment.med)
-        tipControl.setTitle(":)", forSegmentAt: tipSegment.high)
-        
+        let bill = Double(billField.text!) ?? 0
+        if bill == 0 {
+            self.tipLabel.isHidden = true
+            self.tipPercentControl.isHidden = true
+            self.tipSymbol.isHidden = true
+            self.totalLabel.isHidden = true
+            self.totalTwoLabel.isHidden = true
+            self.totalThreeLabel.isHidden = true
+            self.totalFourLabel.isHidden = true
+            self.splitOne.isHidden = true
+            self.splitTwo.isHidden = true
+            self.splitThree.isHidden = true
+            self.splitFour.isHidden = true
+            self.billField.frame.origin.y = 292
+        } else {
+            self.billField.frame.origin.y = 190
+        }
+
         calculateTip(self)
     }
 
@@ -61,7 +90,7 @@ class ViewController: UIViewController {
         if let billTextFieldData = billField.text {
             coder.encode(billTextFieldData, forKey: "billTextField")
         }
-        coder.encode(String(tipControl.selectedSegmentIndex), forKey: "tipSegmentSelector")
+        coder.encode(String(tipPercentControl.selectedIndex), forKey: "tipSelector")
         super.encodeRestorableState(with: coder)
     }
     
@@ -69,8 +98,8 @@ class ViewController: UIViewController {
         if let billTextFieldData = coder.decodeObject(forKey: "billTextField") as? String {
             billField.text = billTextFieldData
         }
-        if let tipControlSelectedIndex = coder.decodeObject(forKey: "tipSegmentSelector") as? String {
-            tipControl.selectedSegmentIndex = Int(tipControlSelectedIndex)!
+        if let tipPercentageControlSelectedIndex = coder.decodeObject(forKey: "tipSelector") as? String {
+            tipPercentControl.selectedIndex = Int(tipPercentageControlSelectedIndex)!
         }
         super.decodeRestorableState(with: coder)
     }
@@ -80,13 +109,29 @@ class ViewController: UIViewController {
     @IBAction func onTap(_ sender: AnyObject) {
         view.endEditing(true)
     }
-
+    
+    @IBAction func onEditingBegin(_ sender: Any) {
+        print("editing begin")
+        pushDownControls()
+        scaleUpBill()
+    }
+    
+    @IBAction func onEditingEnd(_ sender: Any) {
+        print("editing end")
+        scaleDownBill()
+        
+        let bill = Double(billField.text!) ?? 0
+        if bill > 0 {
+            pushUpControls()
+        }
+    }
+    
     @IBAction func calculateTip(_ sender: AnyObject) {
         let userDefaults = UserDefaults.standard
-        let tipSelectedSegmentIndex = tipControl.selectedSegmentIndex
+        let tipPercentSelectedIndex = tipPercentControl.selectedIndex
         var tipPercentage = userDefaults.integer(forKey: "lowTip")
         
-        switch tipSelectedSegmentIndex {
+        switch tipPercentSelectedIndex {
         case tipSegment.low:
             tipPercentage = userDefaults.integer(forKey: "lowTip")
         case tipSegment.med:
@@ -96,12 +141,94 @@ class ViewController: UIViewController {
         default:
             tipPercentage = userDefaults.integer(forKey: "hiTip")
         }
+        
         let bill = Double(billField.text!) ?? 0
         let tip = bill * Double(tipPercentage) * 0.01
         let total = tip + bill
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
+        totalTwoLabel.text = String(format: "$%.2f", total / 2)
+        totalThreeLabel.text = String(format: "$%.2f", total / 3)
+        totalFourLabel.text = String(format: "$%.2f", total / 4)
     }
+    
+    // MARK: - Animatin
+    func scaleUpBill() {
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.billField.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+            self.billField.frame.origin.y = 75
+        })
+    }
+    
+    func scaleDownBill() {
+        
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: { () -> Void in
+            self.billField.transform = CGAffineTransform(scaleX: 1, y: 1)
+            let bill = Double(self.billField.text!) ?? 0
+            if bill == 0 {
+                self.billField.frame.origin.y = 292
+            } else {
+                self.billField.frame.origin.y = 190
+            }
+            
+        })
+    }
+    
+    func pushDownControls() {
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.tipLabel.alpha = 0
+            self.tipPercentControl.alpha = 0
+            self.tipSymbol.alpha = 0
+            self.totalLabel.alpha = 0
+            self.totalTwoLabel.alpha = 0
+            self.totalThreeLabel.alpha = 0
+            self.totalFourLabel.alpha = 0
+            self.splitOne.alpha = 0
+            self.splitTwo.alpha = 0
+            self.splitThree.alpha = 0
+            self.splitFour.alpha = 0
+        }, completion: { (True) -> Void in
+            self.tipLabel.isHidden = true
+            self.tipPercentControl.isHidden = true
+            self.tipSymbol.isHidden = true
+            self.totalLabel.isHidden = true
+            self.totalTwoLabel.isHidden = true
+            self.totalThreeLabel.isHidden = true
+            self.totalFourLabel.isHidden = true
+            self.splitOne.isHidden = true
+            self.splitTwo.isHidden = true
+            self.splitThree.isHidden = true
+            self.splitFour.isHidden = true
+        })
+    }
+    
+    func pushUpControls() {
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: { () -> Void in
+            self.tipLabel.alpha = 1
+            self.tipPercentControl.alpha = 1
+            self.tipSymbol.alpha = 1
+            self.totalLabel.alpha = 1
+            self.totalTwoLabel.alpha = 1
+            self.totalThreeLabel.alpha = 1
+            self.totalFourLabel.alpha = 1
+            self.splitOne.alpha = 1
+            self.splitTwo.alpha = 1
+            self.splitThree.alpha = 1
+            self.splitFour.alpha = 1
+            self.tipLabel.isHidden = false
+            self.tipPercentControl.isHidden = false
+            self.tipSymbol.isHidden = false
+            self.totalLabel.isHidden = false
+            self.totalTwoLabel.isHidden = false
+            self.totalThreeLabel.isHidden = false
+            self.totalFourLabel.isHidden = false
+            self.splitOne.isHidden = false
+            self.splitTwo.isHidden = false
+            self.splitThree.isHidden = false
+            self.splitFour.isHidden = false
+        }, completion: { (True) -> Void in })
+    }
+    
 }
 
