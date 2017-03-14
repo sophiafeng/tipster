@@ -23,13 +23,14 @@ The following **additional** features are implemented:
 
 * [x] Custom segment control with animations
 * [x] Split bill information
+* [x] App color changes based on tip percent selection
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://imgur.com/1QmGJwu.gif' title='Tipster Walkthrough' width='' alt='Tipster Walkthrough' />
-<img src='http://imgur.com/TcoltYp.gif' title='State restorationg within 10 min demo' width='' alt='State restorationg within 10 min demo' />
+<img src='http://imgur.com/KqVjdnG.gif' title='Tipster Walkthrough' width='' alt='Tipster Walkthrough' />
+<img src='http://imgur.com/AaS2M4B.gif' title='State restorationg within 10 min demo' width='' alt='State restorationg within 10 min demo' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
