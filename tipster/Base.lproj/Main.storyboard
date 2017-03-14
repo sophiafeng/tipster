@@ -28,6 +28,13 @@
                                 <color key="textColor" red="0.34699061512947083" green="0.58603256940841675" blue="0.73191982507705688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d48-8m-LFA">
+                                <rect key="frame" x="173" y="410" width="203" height="40"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.34699061512947083" green="0.58603256940841675" blue="0.73191982507705688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6O-tL-ayN">
                                 <rect key="frame" x="116" y="491" width="261" height="71"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -84,7 +91,7 @@
                                 <color key="textColor" red="0.34699061512947083" green="0.58603256940841675" blue="0.73191982507705688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="right" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="$" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-F2-CFg">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="right" fixedFrame="YES" selected="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" placeholder="$" textAlignment="center" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="aHo-F2-CFg">
                                 <rect key="frame" x="37" y="128" width="340" height="153"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -107,12 +114,12 @@
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="valueChanged" id="FHF-fW-N7D"/>
                                 </connections>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d48-8m-LFA">
-                                <rect key="frame" x="173" y="410" width="203" height="40"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="tipster" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyb-qB-7E1">
+                                <rect key="frame" x="52" y="105" width="308" height="99"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <color key="textColor" red="0.34699061512947083" green="0.58603256940841675" blue="0.73191982507705688" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.44313725490196076" green="0.74901960784313726" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -139,6 +146,7 @@
                         <outlet property="tipLabel" destination="d48-8m-LFA" id="gUY-Dc-Ndr"/>
                         <outlet property="tipPercentControl" destination="pVP-IP-ATW" id="bhP-85-vT7"/>
                         <outlet property="tipSymbol" destination="4Ls-t9-Aky" id="Ndx-yp-gjn"/>
+                        <outlet property="tipsterLabel" destination="vyb-qB-7E1" id="KYG-qf-aG5"/>
                         <outlet property="totalFourLabel" destination="gjp-LC-tZ4" id="s6E-IT-O1f"/>
                         <outlet property="totalLabel" destination="D6O-tL-ayN" id="H2Y-2r-FD9"/>
                         <outlet property="totalThreeLabel" destination="LVz-q5-y9x" id="Wtf-XR-jwt"/>

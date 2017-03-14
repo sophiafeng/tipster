@@ -28,6 +28,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var splitTwo: UILabel!
     @IBOutlet weak var splitThree: UILabel!
     @IBOutlet weak var splitFour: UILabel!
+    @IBOutlet weak var tipsterLabel: UILabel!
     
     var defaultTip : Int?
  
@@ -47,6 +48,8 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = UIColor.clear
+        
+        self.billField.becomeFirstResponder()
         
         tipPercentControl.layer.masksToBounds = true
         tipPercentControl.selectedIndex = 0
@@ -151,7 +154,7 @@ class ViewController: UIViewController {
     
     @IBAction func onEditingBegin(_ sender: Any) {
         print("editing begin")
-        pushDownControls()
+        fadeOutControls()
         scaleUpBill()
     }
     
@@ -161,7 +164,9 @@ class ViewController: UIViewController {
         
         let bill = Double(billField.text!) ?? 0
         if bill > 0 {
-            pushUpControls()
+            fadeInControls()
+        } else {
+            fadeInTipsterLabel()
         }
     }
     
@@ -214,7 +219,7 @@ class ViewController: UIViewController {
         })
     }
     
-    func pushDownControls() {
+    func fadeOutControls() {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.tipLabel.alpha = 0
             self.tipPercentControl.alpha = 0
@@ -224,6 +229,7 @@ class ViewController: UIViewController {
             self.totalThreeLabel.alpha = 0
             self.totalFourLabel.alpha = 0
             self.splitOne.alpha = 0
+            self.tipsterLabel.alpha = 0
             self.splitTwo.alpha = 0
             self.splitThree.alpha = 0
             self.splitFour.alpha = 0
@@ -236,13 +242,15 @@ class ViewController: UIViewController {
             self.totalThreeLabel.isHidden = true
             self.totalFourLabel.isHidden = true
             self.splitOne.isHidden = true
+            self.tipsterLabel.isHidden = true
+            self.tipsterLabel.isHidden = true
             self.splitTwo.isHidden = true
             self.splitThree.isHidden = true
             self.splitFour.isHidden = true
         })
     }
     
-    func pushUpControls() {
+    func fadeInControls() {
         UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: { () -> Void in
             self.tipLabel.alpha = 1
             self.tipPercentControl.alpha = 1
@@ -252,6 +260,7 @@ class ViewController: UIViewController {
             self.totalThreeLabel.alpha = 1
             self.totalFourLabel.alpha = 1
             self.splitOne.alpha = 1
+            self.tipsterLabel.alpha = 1
             self.splitTwo.alpha = 1
             self.splitThree.alpha = 1
             self.splitFour.alpha = 1
@@ -263,9 +272,17 @@ class ViewController: UIViewController {
             self.totalThreeLabel.isHidden = false
             self.totalFourLabel.isHidden = false
             self.splitOne.isHidden = false
+            self.tipsterLabel.isHidden = false
             self.splitTwo.isHidden = false
             self.splitThree.isHidden = false
             self.splitFour.isHidden = false
+        }, completion: { (True) -> Void in })
+    }
+    
+    func fadeInTipsterLabel() {
+        UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: { () -> Void in
+            self.tipsterLabel.alpha = 1
+            self.tipsterLabel.isHidden = false
         }, completion: { (True) -> Void in })
     }
     
