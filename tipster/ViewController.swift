@@ -51,6 +51,8 @@ class ViewController: UIViewController {
         tipPercentControl.layer.masksToBounds = true
         tipPercentControl.selectedIndex = 0
         
+        self.addDoneButtonOnKeyboard()
+        
         let userDefaults = UserDefaults.standard
         userDefaults.set(15, forKey: "lowTip")
         userDefaults.set(20, forKey: "medTip")
@@ -87,6 +89,7 @@ class ViewController: UIViewController {
     
     // MARK: - UIStateRestoring protocol methods
     override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(String(describing: NSDate()), forKey: "savedTimestampKey")
         if let billTextFieldData = billField.text {
             coder.encode(billTextFieldData, forKey: "billTextField")
         }
@@ -95,13 +98,49 @@ class ViewController: UIViewController {
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        if let billTextFieldData = coder.decodeObject(forKey: "billTextField") as? String {
-            billField.text = billTextFieldData
+        var restore = false
+        
+        // Only restore states if elapsed time is more than 10 minutes
+        if let savedTimestampString = coder.decodeObject(forKey: "savedTimestampKey") as? String{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssZZZ"
+            let savedTimestamp = dateFormatter.date(from: savedTimestampString)
+            let elapsedTime = NSDate().timeIntervalSince(savedTimestamp!)
+            let elapsedTimeInMins = elapsedTime / 60
+            if elapsedTimeInMins < 10 {
+                restore = true
+            }
         }
-        if let tipPercentageControlSelectedIndex = coder.decodeObject(forKey: "tipSelector") as? String {
-            tipPercentControl.selectedIndex = Int(tipPercentageControlSelectedIndex)!
+        
+        if (restore) {
+            if let billTextFieldData = coder.decodeObject(forKey: "billTextField") as? String {
+                billField.text = billTextFieldData
+            }
+            if let tipPercentageControlSelectedIndex = coder.decodeObject(forKey: "tipSelector") as? String {
+                tipPercentControl.selectedIndex = Int(tipPercentageControlSelectedIndex)!
+            }
         }
+        
         super.decodeRestorableState(with: coder)
+    }
+    
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(ViewController.doneButtonAction))
+        
+        doneToolbar.items = [done]
+        doneToolbar.sizeToFit()
+        
+        self.billField.inputAccessoryView = doneToolbar
+        
+    }
+    
+    func doneButtonAction()
+    {
+        self.billField.resignFirstResponder()
     }
     
     // MARK: - Tip calculation fns
@@ -153,11 +192,11 @@ class ViewController: UIViewController {
         totalFourLabel.text = String(format: "$%.2f", total / 4)
     }
     
-    // MARK: - Animatin
+    // MARK: - Animation
     func scaleUpBill() {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.billField.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-            self.billField.frame.origin.y = 75
+            self.billField.frame.origin.y = 40
         })
     }
     

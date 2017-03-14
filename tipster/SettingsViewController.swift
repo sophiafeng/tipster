@@ -70,6 +70,7 @@ class SettingsViewController: UIViewController {
     
     // MARK: - UIStateRestoring protocol methods
     override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(String(describing: NSDate()), forKey: "savedTimestampKey")
         if let lowTipPercentageLabelData = lowTipPercentageLabel.text {
             coder.encode(lowTipPercentageLabelData, forKey: "lowTipPercentageLabel")
         }
@@ -83,14 +84,30 @@ class SettingsViewController: UIViewController {
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        if let lowTipPercentageLabelData = coder.decodeObject(forKey: "lowTipPercentageLabel") as? String {
-            lowTipPercentageLabel.text = lowTipPercentageLabelData
+        var restore = false
+        
+        // Only restore states if elapsed time is more than 10 minutes
+        if let savedTimestampString = coder.decodeObject(forKey: "savedTimestampKey") as? String{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ssZZZ"
+            let savedTimestamp = dateFormatter.date(from: savedTimestampString)
+            let elapsedTime = NSDate().timeIntervalSince(savedTimestamp!)
+            let elapsedTimeInMins = elapsedTime / 60
+            if elapsedTimeInMins < 10 {
+                restore = true
+            }
         }
-        if let medTipPercentageLabelData = coder.decodeObject(forKey: "medTipPercentageLabel") as? String {
-            medTipPercentageLabel.text = medTipPercentageLabelData
-        }
-        if let hiTipPercentageLabelData = coder.decodeObject(forKey: "hiTipPercentageLabel") as? String {
-            hiTipPercentageLabel.text = hiTipPercentageLabelData
+        
+        if (restore) {
+            if let lowTipPercentageLabelData = coder.decodeObject(forKey: "lowTipPercentageLabel") as? String {
+                lowTipPercentageLabel.text = lowTipPercentageLabelData
+            }
+            if let medTipPercentageLabelData = coder.decodeObject(forKey: "medTipPercentageLabel") as? String {
+                medTipPercentageLabel.text = medTipPercentageLabelData
+            }
+            if let hiTipPercentageLabelData = coder.decodeObject(forKey: "hiTipPercentageLabel") as? String {
+                hiTipPercentageLabel.text = hiTipPercentageLabelData
+            }
         }
         super.decodeRestorableState(with: coder)
     }

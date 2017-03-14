@@ -13,7 +13,7 @@ import UIKit
     private var labels = [UILabel]()
     var thumbView = UIView()
     
-    @IBInspectable var selectedLabelColor : UIColor = UIColor(red:0.50, green:0.54, blue:0.64, alpha:1.0) {
+    @IBInspectable var selectedLabelColor : UIColor = UIColor(red:0.35, green:0.58, blue:0.73, alpha:1.0) {
         didSet {
             setSelectedColors()
         }
@@ -43,7 +43,7 @@ import UIKit
         thumbView.backgroundColor = thumbColor
     }
     
-    var items: [String] = [":c", ":|", "c:"] {
+    var items: [String] = ["😑", "🙂", "😘"] {
         didSet {
             setupLabels()
         }
@@ -130,7 +130,6 @@ import UIKit
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0.0, height: 0.0))
             label.text = items[index - 1];
             label.textAlignment = .center
-//            label.textColor = UIColor(white:0.5, alpha:1.0)
             label.textColor = index == 1 ? selectedLabelColor : unselectedLabelColor
             self.addSubview(label)
             labels.append(label)
