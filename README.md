@@ -34,10 +34,6 @@ Here's a walkthrough of implemented user stories (second gif shows <10 min state
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
-
-Describe any challenges encountered while building the app.
-
 ## License
 
     Copyright 2016 Sophia Feng
