@@ -27,7 +27,7 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough 
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories (second gif shows <10 min state restoration):
 
 <img src='http://imgur.com/KqVjdnG.gif' title='Tipster Walkthrough' width='' alt='Tipster Walkthrough' />
 <img src='http://imgur.com/AaS2M4B.gif' title='State restorationg within 10 min demo' width='' alt='State restorationg within 10 min demo' />
