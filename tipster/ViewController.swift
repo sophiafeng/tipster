@@ -56,6 +56,8 @@ class ViewController: UIViewController {
         
         self.addDoneButtonOnKeyboard()
         
+        self.view.backgroundColor = UIColor(red:0.44, green:0.75, blue:0.91, alpha:1.0)
+        
         let userDefaults = UserDefaults.standard
         userDefaults.set(15, forKey: "lowTip")
         userDefaults.set(20, forKey: "medTip")
@@ -80,9 +82,8 @@ class ViewController: UIViewController {
             self.billField.frame.origin.y = 292
         } else {
             self.billField.frame.origin.y = 190
+            calculateTip(self)
         }
-
-        calculateTip(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -156,6 +157,8 @@ class ViewController: UIViewController {
         print("editing begin")
         fadeOutControls()
         scaleUpBill()
+        
+        animateBackgroundColor(with: UIColor(red:0.44, green:0.75, blue:0.91, alpha:1.0))
     }
     
     @IBAction func onEditingEnd(_ sender: Any) {
@@ -165,6 +168,7 @@ class ViewController: UIViewController {
         let bill = Double(billField.text!) ?? 0
         if bill > 0 {
             fadeInControls()
+            calculateTip(self)
         } else {
             fadeInTipsterLabel()
         }
@@ -178,12 +182,15 @@ class ViewController: UIViewController {
         switch tipPercentSelectedIndex {
         case tipSegment.low:
             tipPercentage = userDefaults.integer(forKey: "lowTip")
+            animateBackgroundColor(with: UIColor(red:0.62, green:0.28, blue:0.28, alpha:1.0))
         case tipSegment.med:
             tipPercentage = userDefaults.integer(forKey: "medTip")
+            animateBackgroundColor(with: UIColor(red:0.69, green:0.67, blue:0.32, alpha:1.0))
         case tipSegment.high:
             tipPercentage = userDefaults.integer(forKey: "hiTip")
+            animateBackgroundColor(with: UIColor(red:0.40, green:0.62, blue:0.28, alpha:1.0))
         default:
-            tipPercentage = userDefaults.integer(forKey: "hiTip")
+            tipPercentage = userDefaults.integer(forKey: "medTip")
         }
         
         let bill = Double(billField.text!) ?? 0
@@ -283,6 +290,12 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.3, delay: 0.1, options: [], animations: { () -> Void in
             self.tipsterLabel.alpha = 1
             self.tipsterLabel.isHidden = false
+        }, completion: { (True) -> Void in })
+    }
+    
+    func animateBackgroundColor(with color: UIColor) {
+        UIView.animate(withDuration: 0.2, delay: 0.6, options: [], animations: { () -> Void in
+            self.view.backgroundColor = color
         }, completion: { (True) -> Void in })
     }
     
