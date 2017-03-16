@@ -34,6 +34,10 @@ Here's a walkthrough of implemented user stories (second gif shows <10 min state
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
+## Notes
+
+I spent the most time on state restoration. I took some time to understand methods in the AppDelegate and the order at which they were called. I had read about how to enabled state restoration but ran into a bug where even though I added restoration identifiers the encode/decode methods weren't being called.
+
 ## License
 
     Copyright 2016 Sophia Feng
