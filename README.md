@@ -28,9 +28,11 @@ The following **additional** features are implemented:
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
+
 <img src='http://imgur.com/KqVjdnG.gif' title='Tipster Walkthrough' width='' alt='Tipster Walkthrough' />
 
 Here's a walkthrough demoing <10 min state restoration. Since this was done in simulator, I first background the app and then killed it in Xcode's Stop button, then open the app again. 
+
 <img src='http://imgur.com/AaS2M4B.gif' title='State restorationg within 10 min demo' width='' alt='State restorationg within 10 min demo' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
